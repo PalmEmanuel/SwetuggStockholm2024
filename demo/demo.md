@@ -7,18 +7,17 @@ k3d cluster delete
 k3d cluster create -p "8081:80@loadbalancer" --k3s-arg "--disable=traefik@server:0"
 rad install kubernetes --set rp.publicEndpointOverride=localhost:8081
 rad init
+- Yes
+rad deploy app.bicep --application swetugg-demo
 ```
-
-## Demo
 
 ### Start Codespace
 
 ### Connect to Codespace from VS Code
 
+## Demo
+
 ```
-rad init
-# - Yes
-rad deploy app.bicep --application swetugg-demo
 rad resource expose containers demo --application swetugg-demo --port 1337 --remote-port 3000
 ```
 
