@@ -6,23 +6,23 @@
 
 ### Initialize cluster
 
-```plaintext
+```ps1
 k3d cluster delete
 k3d cluster create -p "8081:80@loadbalancer" --k3s-arg "--disable=traefik@server:0"
 rad install kubernetes --set rp.publicEndpointOverride=localhost:8081
 rad init
-- Yes
+# Yes
 ```
 
 ### Deploy eShop example
 
-```plaintext
+```ps1
 rad deploy samples/eshop/eshop.bicep
 ```
 
 ### Deploy Dashboard
 
-```plaintext
+```ps1
 kubectl apply -f https://raw.githubusercontent.com/radius-project/dashboard/main/deploy/dashboard.yaml
 ```
 
@@ -34,7 +34,8 @@ kubectl apply -f https://raw.githubusercontent.com/radius-project/dashboard/main
 
 ### Go through app.bicep
 
-```plaintext
+```ps1
+# https://github.com/radius-project/samples
 rad run app.bicep
 ```
 
@@ -80,18 +81,18 @@ resource cache 'Applications.Datastores/redisCaches@2023-10-01-preview' = {
 
 ### Show the connections of the app
 
-```plaintext
+```ps1
 rad connections show 
 ```
 
 ### Expose eShop container
 
-```plaintext
+```ps1
 rad resource expose -a eshop containers web-spa --port 5000 --remote-port 80
 ```
 
 ### Show Dashboard
 
-```plaintext
+```ps1
 kubectl port-forward --namespace=radius-system svc/dashboard 3000:80
 ```
